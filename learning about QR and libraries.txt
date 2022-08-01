@@ -1,0 +1,24 @@
+common 2D barcodes
+https://www.dynamsoft.com/blog/insights/qr-vs-pdf-417-vs-datamatrix/
+
+qr encoder
+https://au.mathworks.com/matlabcentral/fileexchange/49808-qr-code-generator-1-1-based-on-zxing?tab=discussions
+
+https://au.mathworks.com/matlabcentral/fileexchange/41437-qr-code-encoder
+https://au.mathworks.com/matlabcentral/fileexchange/29239-qr-code-encode-and-decode?tab=discussions
+
+qr decoder
+https://au.mathworks.com/help/vision/ref/readbarcode.html
+
+download and build:
+http://code.google.com/p/zxing/
+https://github.com/zxing/zxing
+https://github.com/zxing/zxing/wiki/Getting-Started-Developing
+
+https://blog.katastros.com/a?ID=00400-ffbd7195-5651-4c9a-99ba-85d094ed07ea
+
+
+all jars available:
+https://repo1.maven.org/maven2/com/google/zxing/core/3.3.0/
+
+https://mavenlibs.com/jar/file/com.google.zxing/core

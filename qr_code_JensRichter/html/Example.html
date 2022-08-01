@@ -1,0 +1,264 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>qrcode_gen - 1.1</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-03-28"><meta name="DC.source" content="Example.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>qrcode_gen - 1.1</h1><!--introduction--><div><ul><li>Author :  Jens Richter</li><li>eMail  :  <a href="mailto:jrichter@iph.rwth-aachen.de">jrichter@iph.rwth-aachen.de</a></li><li>Date   :  March 28th 2015</li></ul></div><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Short description of QRcode_gen:</a></li><li><a href="#2">Acknowledgment:</a></li><li><a href="#3">To make QRcode_gen work:</a></li><li><a href="#4">Adds all files of qrcode_gen to matlab path and makes a clear close all:</a></li><li><a href="#5">Example 1 - Generating a simple test QR-Code:</a></li><li><a href="#6">Example 2 - Generating a simple QR-Code with your message:</a></li><li><a href="#7">Example 3 - Generating a simple QR-Code with your message and some paramters:</a></li><li><a href="#8">Example 4 - Generating a MECARD:</a></li><li><a href="#9">Example 5 - Generating a QR-Code of a desired size:</a></li><li><a href="#10">Example 6 _ Changing the Quietzone</a></li><li><a href="#11">Example 7 - Downloading the jars:</a></li></ul></div><h2>Short description of QRcode_gen:<a name="1"></a></h2><p>QRcode_gen can generate QR-Codes based on the zxing libraries (<a href="http://github.com/zxing">http://github.com/zxing</a>). For this purpose it will import all necessary  jar files on the fly from a maven repository server (check qrcode_config.m for details). In addition QRcode_gen has an option to download the necessary jar files and save them into a predefined directory. If you are not willing to download precompiled jars from the web (what is understandable in terms of security issues) you can access zxings open source project (<a href="http://github.com/zxing">http://github.com/zxing</a>) check the source code and compile the jars yourself.</p><p>For a list of all parameters that qrcode_gen is accepting please refer to <b>'help qrcode_gen'</b>.</p><h2>Acknowledgment:<a name="2"></a></h2><div><ol><li><b>QR Code encode and decode</b> by  Lior Shapira <a href="http://www.mathworks.com/matlabcentral/fileexchange/29239-qr-code-encode-and-decode">http://www.mathworks.com/matlabcentral/fileexchange/29239-qr-code-encode-and-decode</a> =&gt; Was used a template for QRcode_gen. QRcode_gen differs mainly terms of the matlab implementation. New features in QRcode_gen are the "on the fly" import and the jar download functionality and the use of newer zxing libraries and the functionality test in Matlab 2014b.</li></ol></div><h2>To make QRcode_gen work:<a name="3"></a></h2><p>Simply add the mianfolder of QRcode_gen your Matlab path. Example.m will do this automatically for you. The path has to be writable and readable if you want to download the jars because folders and the jars have to be created.</p><h2>Adds all files of qrcode_gen to matlab path and makes a clear close all:<a name="4"></a></h2><p>Later on you will have to do that on your own.</p><pre class="codeinput">clear;
+close <span class="string">all</span>;
+
+fullpath = mfilename(<span class="string">'fullpath'</span>);
+[pathstr1,~,~] = fileparts(fullpath);
+addpath(genpath(pathstr1));
+</pre><h2>Example 1 - Generating a simple test QR-Code:<a name="5"></a></h2><p>We want to simply test the functionality for this reason we call qrcode_gen without any parameters. A dummy message will be encoded in UTF-8.</p><pre class="codeinput">qr = qrcode_gen(); <span class="comment">% Returns a matrix</span>
+
+fExample1 = figure;
+colormap(gray);
+imagesc(qr);
+axis <span class="string">image</span>;
+</pre><pre class="codeoutput">Warning: No message was specified for encoding - a test message will be used
+instead. 
+</pre><img vspace="5" hspace="5" src="Example_01.png" alt=""> <h2>Example 2 - Generating a simple QR-Code with your message:<a name="6"></a></h2><p>We want to encode the message "Hello world".</p><pre class="codeinput">message = <span class="string">'Hello World'</span>;
+qr = qrcode_gen(message); <span class="comment">% Returns a matrix</span>
+
+fExample2 = figure;
+colormap(gray);
+imagesc(qr);
+axis <span class="string">image</span>;
+</pre><img vspace="5" hspace="5" src="Example_02.png" alt=""> <h2>Example 3 - Generating a simple QR-Code with your message and some paramters:<a name="7"></a></h2><p>We want to encode a message and define Character Set and QR-Code Version. For a full list of all available Character Sets visit <a href="http://github.com/zxing/zxing/blob/master/core/src/main/java/com/google/zxing/common/CharacterSetECI.java">http://github.com/zxing/zxing/blob/master/core/src/main/java/com/google/zxing/common/CharacterSetECI.java</a> or have a look into qrcode_config.m .</p><pre class="codeinput">message = <span class="string">'Hello World in UTF-8 (default) and QR-Code-Version 20'</span>;
+qr = qrcode_gen(message,<span class="string">'CharacterSet'</span>,<span class="string">'UTF-8'</span>,<span class="string">'Version'</span>,20); <span class="comment">% Returns a matrix</span>
+
+fExample3 = figure;
+colormap(gray);
+imagesc(qr);
+axis <span class="string">image</span>;
+</pre><img vspace="5" hspace="5" src="Example_03.png" alt=""> <h2>Example 4 - Generating a MECARD:<a name="8"></a></h2><p>We want to generate a MECARD. Have a look on <a href="http://github.com/zxing/zxing/wiki/Barcode-Contents">http://github.com/zxing/zxing/wiki/Barcode-Contents</a> for a list of available keywords.</p><pre class="codeinput">message = <span class="string">'MECARD:N:Skywalker,Luke;ADR:76 9th Avenue, 4th Floor, New York, NY 10011;TEL:1234567891011;EMAIL:luke@skywalker.com;;'</span>;
+qr = qrcode_gen(message,<span class="string">'Version'</span>,40); <span class="comment">% Returns a matrix</span>
+
+fExample4 = figure;
+colormap(gray);
+imagesc(qr);
+axis <span class="string">image</span>;
+</pre><img vspace="5" hspace="5" src="Example_04.png" alt=""> <h2>Example 5 - Generating a QR-Code of a desired size:<a name="9"></a></h2><p>We want to generate a QR Code of a certain size. We have to fulfill the 17+4N rule. This basically means that the dimension of your QR-Code in x and y fulfill this rule. For example 97 fulfills the rule because 17+4*20 = 97. <b>Annotation:</b> The Version parameter basically also sets the size of the QR-Code and has priority over the Size parameter.</p><pre class="codeinput">message = <span class="string">'I fullfill the 17+4N rule.'</span>;
+qr = qrcode_gen(message,<span class="string">'Size'</span>,97); <span class="comment">% you can also specify [97,97] instead</span>
+
+fExample5 = figure;
+colormap(gray);
+imagesc(qr);
+axis <span class="string">image</span>;
+</pre><img vspace="5" hspace="5" src="Example_05.png" alt=""> <h2>Example 6 _ Changing the Quietzone<a name="10"></a></h2><p>For QR code reader it is easier to read QR-codes with a bigger quiet zone. In this example we want to set the quiet zone size to 20 pixels.</p><pre class="codeinput">message = <span class="string">'Hello World again with a big quiet zone'</span>;
+qr = qrcode_gen(message,<span class="string">'QuietZone'</span>,20); <span class="comment">% Returns a matrix</span>
+
+fExample6 = figure;
+colormap(gray);
+imagesc(qr);
+axis <span class="string">image</span>;
+</pre><img vspace="5" hspace="5" src="Example_06.png" alt=""> <h2>Example 7 - Downloading the jars:<a name="11"></a></h2><p>We want to download the jars to our system instead of loading them on the fly. Actually we do not want to this here because this decision is up to you.</p><p>If you are willing to do that use the syntax:</p><p><b>qrcode_gen('DownloadJars',1);</b></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%%  qrcode_gen - 1.1
+% * Author :  Jens Richter
+% * eMail  :  jrichter@iph.rwth-aachen.de
+% * Date   :  March 28th 2015
+
+%% Short description of QRcode_gen:
+%
+% QRcode_gen can generate QR-Codes based on the zxing libraries
+% (http://github.com/zxing). For this purpose it will import all
+% necessary  jar files on the fly from a maven repository server (check
+% qrcode_config.m for details). In addition QRcode_gen has an option to download the
+% necessary jar files and save them into a predefined directory. 
+% If you are not willing to download precompiled jars from the web 
+% (what is understandable in terms of security issues) you can access
+% zxings open source project (http://github.com/zxing) check the source code
+% and compile the jars yourself.
+%
+% For a list of all parameters that qrcode_gen is accepting please refer to
+% *'help qrcode_gen'*.
+
+
+%% Acknowledgment:
+% 
+% # *QR Code encode and decode* by  Lior Shapira
+    % http://www.mathworks.com/matlabcentral/fileexchange/29239-qr-code-encode-and-decode
+    % => Was used a template for QRcode_gen. 
+    % QRcode_gen differs mainly terms of the matlab implementation.
+    % New features in QRcode_gen are the "on the fly" import and
+    % the jar download functionality and the use of newer zxing libraries
+    % and the functionality test in Matlab 2014b.
+    
+%% To make QRcode_gen work:
+% Simply add the mianfolder of QRcode_gen your Matlab path.
+% Example.m will do this automatically for you. 
+% The path has to be writable and readable if you want to download the jars
+% because folders and the jars have to be created.
+
+%% Adds all files of qrcode_gen to matlab path and makes a clear close all:
+% Later on you will have to do that on your own.
+clear;
+close all;
+
+fullpath = mfilename('fullpath');
+[pathstr1,~,~] = fileparts(fullpath);
+addpath(genpath(pathstr1));
+
+
+
+%% Example 1 - Generating a simple test QR-Code:
+% We want to simply test the functionality for this reason we call
+% qrcode_gen without any parameters. A dummy message will be encoded in
+% UTF-8.
+
+qr = qrcode_gen(); % Returns a matrix
+
+fExample1 = figure;
+colormap(gray);
+imagesc(qr);
+axis image;
+
+%% Example 2 - Generating a simple QR-Code with your message:
+% We want to encode the message "Hello world".
+
+message = 'Hello World';
+qr = qrcode_gen(message); % Returns a matrix
+
+fExample2 = figure;
+colormap(gray);
+imagesc(qr);
+axis image;
+
+%% Example 3 - Generating a simple QR-Code with your message and some paramters:
+% We want to encode a message and define Character Set and QR-Code Version.
+% For a full list of all available Character Sets visit 
+% http://github.com/zxing/zxing/blob/master/core/src/main/java/com/google/zxing/common/CharacterSetECI.java
+% or have a look into qrcode_config.m .
+
+message = 'Hello World in UTF-8 (default) and QR-Code-Version 20';
+qr = qrcode_gen(message,'CharacterSet','UTF-8','Version',20); % Returns a matrix
+
+fExample3 = figure;
+colormap(gray);
+imagesc(qr);
+axis image;
+
+%% Example 4 - Generating a MECARD:
+% We want to generate a MECARD. Have a look on http://github.com/zxing/zxing/wiki/Barcode-Contents
+% for a list of available keywords.
+
+message = 'MECARD:N:Skywalker,Luke;ADR:76 9th Avenue, 4th Floor, New York, NY 10011;TEL:1234567891011;EMAIL:luke@skywalker.com;;';
+qr = qrcode_gen(message,'Version',40); % Returns a matrix
+
+fExample4 = figure;
+colormap(gray);
+imagesc(qr);
+axis image;
+
+%% Example 5 - Generating a QR-Code of a desired size:
+% We want to generate a QR Code of a certain size. We have to fulfill
+% the 17+4N rule. This basically means that the dimension of your QR-Code
+% in x and y fulfill this rule. 
+% For example 97 fulfills the rule because 17+4*20 = 97.
+% *Annotation:* The Version parameter basically also sets the size of the
+% QR-Code and has priority over the Size parameter.
+
+message = 'I fullfill the 17+4N rule.';
+qr = qrcode_gen(message,'Size',97); % you can also specify [97,97] instead
+
+fExample5 = figure;
+colormap(gray);
+imagesc(qr);
+axis image;
+
+
+%% Example 6 _ Changing the Quietzone
+% For QR code reader it is easier to read QR-codes with a bigger quiet zone.
+% In this example we want to set the quiet zone size to 20 pixels.
+
+message = 'Hello World again with a big quiet zone';
+qr = qrcode_gen(message,'QuietZone',20); % Returns a matrix
+
+fExample6 = figure;
+colormap(gray);
+imagesc(qr);
+axis image;
+
+%% Example 7 - Downloading the jars:
+% We want to download the jars to our system instead of loading them on
+% the fly. Actually we do not want to this here because this decision is
+% up to you.
+%
+% If you are willing to do that use the syntax:
+%
+% *qrcode_gen('DownloadJars',1);*
+
+
+
+
+
+
+
+
+
+##### SOURCE END #####
+--></body></html>
